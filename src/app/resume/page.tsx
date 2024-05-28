@@ -18,9 +18,8 @@ const about = {
 		{ fieldName: "Phone:", fieldValue: "123-456-7890" },
 		{ fieldName: "Experience:", fieldValue: "5+ years" },
 		{ fieldName: "Location:", fieldValue: "Houston, TX" },
-    { fieldName: "Freelance:", fieldValue: "Available" },
+		{ fieldName: "Freelance:", fieldValue: "Available" },
 		{ fieldName: "Email:", fieldValue: "natetewelde@gmail.com" },
-    
 	],
 };
 
@@ -64,9 +63,9 @@ const skills = {
 		{ icon: <FaJs />, name: "JavaScript" },
 		{ icon: <SiTypescript />, name: "TypeScript" },
 		{ icon: <FaReact />, name: "React" },
+		{ icon: <FaVuejs />, name: "Vue" },
 		{ icon: <SiNextdotjs />, name: "Next.js" },
 		{ icon: <SiTailwindcss />, name: "Tailwind CSS" },
-		{ icon: <SiPostgresql />, name: "PostgreSQL" },
 	],
 };
 
