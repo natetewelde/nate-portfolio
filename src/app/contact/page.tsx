@@ -10,6 +10,7 @@ import { z } from "zod";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { initCustomTraceSubscriber } from "next/dist/build/swc";
 
 const FormSchema = z.object({
 	firstname: z.string().min(2, { message: "First name must at least contain 2 character(s)." }),
@@ -23,13 +24,39 @@ const FormSchema = z.object({
 });
 
 const Contact = () => {
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [successMessage, setSuccessMessage] = useState("");
+	const [errorMessage, setErrorMessage] = useState("");
+
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: { firstname: "", lastname: "", email: "", message: "" },
 	});
 
-	function onSubmit(data: z.infer<typeof FormSchema>) {
-		console.log({ data });
+	async function onSubmit(data: z.infer<typeof FormSchema>) {
+		setIsSubmitting(true);
+		setSuccessMessage("");
+		setErrorMessage("");
+
+		try {
+			const response = await fetch("/api/contact", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(data),
+			});
+
+			if (response.ok) {
+				setSuccessMessage("Message sent successfully!");
+				form.reset();
+			} else {
+				const errorData = await response.json();
+				setErrorMessage(errorData.message || "Something went wrong. Please try again later.");
+			}
+		} catch (error) {
+			setErrorMessage("Something went wrong. Please try again later.");
+		} finally {
+			setIsSubmitting(false);
+		}
 	}
 
 	return (
@@ -122,9 +149,11 @@ const Contact = () => {
 									)}
 								/>
 								{/* Button */}
-								<Button type="submit" size="md" className="max-w-40">
-									Send Message
+								<Button type="submit" size="md" className="max-w-40" disabled={isSubmitting}>
+									{isSubmitting ? "Sending..." : "Send Message"}
 								</Button>
+								{successMessage && <p className="text-green-500">{successMessage}</p>}
+								{errorMessage && <p className="text-red-700">{errorMessage}</p>}
 							</form>
 						</Form>
 					</div>

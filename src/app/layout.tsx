@@ -14,6 +14,7 @@ const jetBrainsMono = JetBrains_Mono({
 	subsets: ["latin"],
 	weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
 	variable: "--font-jetbrainsMono",
+	preload: false,
 });
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning={true}>
 			<body className={jetBrainsMono.className}>
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 					<Header />

@@ -13,7 +13,15 @@ const Photo = () => {
 					animate={{ opacity: 1, transition: { delay: 2.4, duration: 0.4, ease: "easeInOut" } }}
 					className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px] dark:mix-blend-lighten absolute xl:left-[5px] xl:top-[2px] left-[1px] top-[1px]"
 				>
-					<Image src="/assets/nate-picture.png" priority quality={100} fill alt="" className="object-contain" />
+					<Image
+						src="/assets/nate-picture.png"
+						priority
+						quality={100}
+						fill
+						sizes="(max-width: 298px) 100vw, (max-width:498px) 50vw, 33vw"
+						alt="picture of Nate"
+						className="object-contain"
+					/>
 				</motion.div>
 
 				{/* Circle */}
