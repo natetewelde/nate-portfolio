@@ -5,12 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { z } from "zod";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { initCustomTraceSubscriber } from "next/dist/build/swc";
 
 const FormSchema = z.object({
 	firstname: z.string().min(2, { message: "First name must at least contain 2 character(s)." }),
@@ -33,31 +32,7 @@ const Contact = () => {
 		defaultValues: { firstname: "", lastname: "", email: "", message: "" },
 	});
 
-	async function onSubmit(data: z.infer<typeof FormSchema>) {
-		setIsSubmitting(true);
-		setSuccessMessage("");
-		setErrorMessage("");
-
-		try {
-			const response = await fetch("/api/contact", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(data),
-			});
-
-			if (response.ok) {
-				setSuccessMessage("Message sent successfully!");
-				form.reset();
-			} else {
-				const errorData = await response.json();
-				setErrorMessage(errorData.message || "Something went wrong. Please try again later.");
-			}
-		} catch (error) {
-			setErrorMessage("Something went wrong. Please try again later.");
-		} finally {
-			setIsSubmitting(false);
-		}
-	}
+	function onSubmit(data: z.infer<typeof FormSchema>) {}
 
 	return (
 		<motion.section initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 2.4, duration: 0.4, ease: "easeIn" } }} className="py-6">
