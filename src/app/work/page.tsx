@@ -19,6 +19,7 @@ const projects = [
 		stack: [{ name: "Html 5" }, { name: "Css 3" }, { name: "Vue" }],
 		image: "/assets/work/fairfield.png",
 		live: "https://fairfieldgeo.com/",
+		repo: "",
 		type: "public",
 	},
 	{
@@ -29,6 +30,7 @@ const projects = [
 		stack: [{ name: "Html 5" }, { name: "Css 3" }, { name: "Vue" }],
 		image: "/assets/work/nine.png",
 		live: "https://nineenergyservice.com/",
+		repo: "",
 		type: "public",
 	},
 	{
@@ -39,6 +41,7 @@ const projects = [
 		stack: [{ name: "Html 5" }, { name: "Css 3" }, { name: "Vue" }],
 		image: "/assets/work/bkv.png",
 		live: "https://bkvcorp.com/",
+		repo: "",
 		type: "public",
 	},
 	{
@@ -50,6 +53,7 @@ const projects = [
 		stack: [{ name: "Material UI" }, { name: "React" }],
 		image: "/assets/work/confidential.png",
 		type: "confidential",
+		repo: "",
 		live: "",
 	},
 	{
@@ -61,6 +65,7 @@ const projects = [
 		stack: [{ name: "Typescript" }, { name: "React" }, { name: "Material UI" }],
 		image: "/assets/work/confidential.png",
 		type: "confidential",
+		repo: "",
 		live: "",
 	},
 	{
@@ -70,7 +75,8 @@ const projects = [
 		description: "Built using Next.js, this portfolio is a showcase of my work and skills.",
 		stack: [{ name: "Typescript" }, { name: "React" }, { name: "Next.js" }, { name: "Tailwind CSS" }],
 		image: "/assets/work/portfolio.png",
-		live: "",
+		live: "https://nate-portfolio-two.vercel.app/",
+		repo: "https://github.com/natetewelde/nate-portfolio",
 		type: "public",
 	},
 ];
@@ -125,6 +131,21 @@ const Work = () => {
 												</TooltipTrigger>
 												<TooltipContent>
 													<p>Live Site</p>
+												</TooltipContent>
+											</Tooltip>
+										</TooltipProvider>
+									</Link>
+								)}
+								{/* Github Button */}
+								{project.repo !== "" && (
+									<Link href={project.repo} target="_blank">
+										<TooltipProvider delayDuration={100}>
+											<Tooltip>
+												<TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-accent  dark:bg-white/5 flex justify-center items-center group">
+													<BsGithub className="text-white text-3xl group-hover:dark:text-accent group-hover:text-primaryDark" />
+												</TooltipTrigger>
+												<TooltipContent>
+													<p>Github</p>
 												</TooltipContent>
 											</Tooltip>
 										</TooltipProvider>
