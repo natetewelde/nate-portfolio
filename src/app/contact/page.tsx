@@ -10,6 +10,7 @@ import { z } from "zod";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader } from "lucide-react";
 
 const FormSchema = z.object({
 	firstname: z.string().min(2, { message: "First name must at least contain 2 character(s)." }),
@@ -30,9 +31,35 @@ const Contact = () => {
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: { firstname: "", lastname: "", email: "", message: "" },
+		mode: "onChange",
 	});
 
-	function onSubmit(data: z.infer<typeof FormSchema>) {}
+	async function onSubmit(data: z.infer<typeof FormSchema>) {
+		setIsSubmitting(true);
+		setErrorMessage("");
+		setSuccessMessage("");
+
+		try {
+			const response = await fetch("/api/contact", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(data),
+			});
+
+			if (!response.ok) {
+				throw new Error(`Error: ${response.statusText}`);
+			}
+
+			await new Promise((resolve) => setTimeout(resolve, 2000));
+
+			const result = await response.json();
+			setSuccessMessage(result.message);
+		} catch (error) {
+			setErrorMessage(error.message);
+		} finally {
+			setIsSubmitting(false);
+		}
+	}
 
 	return (
 		<motion.section initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 2.4, duration: 0.4, ease: "easeIn" } }} className="py-6">
@@ -124,8 +151,14 @@ const Contact = () => {
 									)}
 								/>
 								{/* Button */}
-								<Button type="submit" size="md" className="max-w-40" disabled={isSubmitting}>
-									{isSubmitting ? "Sending..." : "Send Message"}
+								<Button type="submit" size="md" className="max-w-40">
+									{isSubmitting ? (
+										<>
+											Sending <Loader className="ml-2  animate-spin" />
+										</>
+									) : (
+										"Send Message"
+									)}
 								</Button>
 								{successMessage && <p className="text-green-500">{successMessage}</p>}
 								{errorMessage && <p className="text-red-700">{errorMessage}</p>}

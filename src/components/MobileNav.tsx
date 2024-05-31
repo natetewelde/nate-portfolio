@@ -4,6 +4,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { CiMenuBurger } from "react-icons/ci";
+import DarkModeToggle from "./DarkModeToggle";
 
 const links = [
 	{ name: "home", path: "/" },
@@ -20,9 +21,9 @@ const MobileNav = () => {
 			<SheetTrigger className="flex justify-center items-center">
 				<CiMenuBurger className="text-[32px] text-accent" />
 			</SheetTrigger>
-			<SheetContent className="flex flex-col bg-primary text-primaryDark dark:text-primary dark:bg-primaryDark">
+			<SheetContent className="flex flex-col bg-primary text-primaryDark dark:text-primary dark:bg-primaryDark ">
 				{/* Logo */}
-				<div className="mt-32 mb-40 text-center text-2xl">
+				<div className="mt-32 mb-20 text-center text-2xl">
 					<Link href="/">
 						<h1 className="text-4xl font-semibold">
 							Nate<span className="text-accent">.</span>
