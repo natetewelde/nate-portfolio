@@ -47,7 +47,9 @@ const Contact = () => {
 			});
 
 			if (!response.ok) {
-				throw new Error(`Error: ${response.statusText}`);
+				const errorText = await response.text();
+
+				throw new Error(`Error: ${response.status} - ${errorText}`);
 			}
 
 			await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -55,7 +57,11 @@ const Contact = () => {
 			const result = await response.json();
 			setSuccessMessage(result.message);
 		} catch (error) {
-			setErrorMessage(error.message);
+			if (error instanceof Error) {
+				setErrorMessage(error.message);
+			} else {
+				setErrorMessage("An error occurred while sending the message.");
+			}
 		} finally {
 			setIsSubmitting(false);
 		}
