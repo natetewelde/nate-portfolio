@@ -1,12 +1,12 @@
-"use client";
+"use client"
 
-import { FaHtml5, FaCss3, FaJs, FaReact, FaVuejs, FaNodeJs } from "react-icons/fa";
-import { SiTypescript, SiNextdotjs, SiTailwindcss, SiPostgresql } from "react-icons/si";
+import { FaHtml5, FaCss3, FaJs, FaReact, FaVuejs, FaNodeJs } from "react-icons/fa"
+import { SiTypescript, SiNextdotjs, SiTailwindcss, SiPostgresql, SiHono, SiDrizzle, SiClerk } from "react-icons/si"
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { motion } from "framer-motion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { motion } from "framer-motion"
 
 //about data
 const about = {
@@ -21,7 +21,7 @@ const about = {
 		{ fieldName: "Freelance:", fieldValue: "Available" },
 		{ fieldName: "Email:", fieldValue: "natetewelde@gmail.com" },
 	],
-};
+}
 
 //experience data
 const experience = {
@@ -35,7 +35,7 @@ const experience = {
 		{ company: "Pennebaker", position: "Web Developer", duration: "2020-2021" },
 		{ company: "United States Marine Corps", position: "Platoon Sergeant", duration: "2014-2020" },
 	],
-};
+}
 
 //education data
 const education = {
@@ -50,7 +50,7 @@ const education = {
 		{ school: "FreeCodeCamp", degree: "Responsive Web Design", duration: "2019" },
 		{ school: "Team Treehouse", degree: "Front-End Development Track", duration: "2019" },
 	],
-};
+}
 
 //skills data
 const skills = {
@@ -66,8 +66,12 @@ const skills = {
 		{ icon: <FaVuejs />, name: "Vue" },
 		{ icon: <SiNextdotjs />, name: "Next.js" },
 		{ icon: <SiTailwindcss />, name: "Tailwind CSS" },
+		{ icon: <SiPostgresql />, name: "PostgreSQL" },
+		{ icon: <SiHono />, name: "Hono" },
+		{ icon: <SiDrizzle />, name: "Drizzle" },
+		{ icon: <SiClerk />, name: "Clerk" },
 	],
-};
+}
 
 const Resume = () => {
 	return (
@@ -182,7 +186,7 @@ const Resume = () => {
 				</Tabs>
 			</div>
 		</motion.div>
-	);
-};
+	)
+}
 
-export default Resume;
+export default Resume

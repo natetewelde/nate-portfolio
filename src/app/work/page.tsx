@@ -1,14 +1,14 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
-import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { BsArrowUpRight, BsGithub } from "react-icons/bs";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import Link from "next/link";
-import Image from "next/image";
-import WorkSliderBtns from "@/components/WorkSliderBtns";
+import { motion } from "framer-motion"
+import React, { useState } from "react"
+import { Swiper, SwiperSlide } from "swiper/react"
+import "swiper/css"
+import { BsArrowUpRight, BsGithub } from "react-icons/bs"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import Link from "next/link"
+import Image from "next/image"
+import WorkSliderBtns from "@/components/WorkSliderBtns"
 
 const projects = [
 	{
@@ -79,17 +79,29 @@ const projects = [
 		repo: "https://github.com/natetewelde/nate-portfolio",
 		type: "public",
 	},
-];
+	{
+		num: "07",
+		category: "fullstack",
+		title: "Finance Tracker",
+		description:
+			"Built using Next.js, Hono, Tailwind, Drizzle, and Postgres, this finance tracker is a fullstack application that allows users to track their finances.",
+		stack: [{ name: "Typescript" }, { name: "React" }, { name: "Next.js" }, { name: "Tailwind CSS" }],
+		image: "/assets/work/finance.png",
+		live: "https://finance-dev-five.vercel.app/",
+		repo: "https://github.com/natetewelde/finance-dev",
+		type: "public",
+	},
+]
 
 const Work = () => {
-	const [project, setProject] = useState(projects[0]);
+	const [project, setProject] = useState(projects[0])
 
 	const handleSlideChange = (swiper: any) => {
 		//get current slide index
-		const currentSlide = swiper.activeIndex;
+		const currentSlide = swiper.activeIndex
 		//update project state based on current slide index
-		setProject(projects[currentSlide]);
-	};
+		setProject(projects[currentSlide])
+	}
 	return (
 		<motion.section
 			initial={{ opacity: 0 }}
@@ -178,7 +190,7 @@ const Work = () => {
 				</div>
 			</div>
 		</motion.section>
-	);
-};
+	)
+}
 
-export default Work;
+export default Work
